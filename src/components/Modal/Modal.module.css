@@ -1,0 +1,163 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.modal__container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  max-height: 90%;
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px;
+  z-index: 1001;
+  overflow: auto;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.popular__tag {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 10px;
+}
+
+.modal__header__items {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal__header__items p {
+  font-size: 1.1rem;
+  color: rgb(155, 155, 155);
+}
+
+.clock__icon,
+.like__icon,
+.bowl__icon,
+.healthy__icon {
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.close__icon {
+  margin-left: auto;
+  font-size: 1.5rem;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.modal__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.modal__image {
+  width: max-content;
+  height: max-content;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal__image img {
+  width: 500px;
+  height: 350px;
+  object-fit: cover;
+  transition: all 0.3s ease-in-out;
+}
+
+.title__section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.diet__icon__nonVeg {
+  font-size: 1rem;
+  margin-left: auto;
+  margin-right: 5px;
+  color: red;
+  border-radius: 50%;
+}
+
+.diet__icon__veg {
+  font-size: 1rem;
+  color: var(--primary);
+  margin-right: 5px;
+  margin-left: auto;
+
+  border-radius: 50%;
+}
+.description{
+  padding-right: 1rem;
+}
+
+.description h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.description h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: rgb(107, 107, 107);
+}
+
+.description p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: rgb(102, 102, 102);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.steps__section {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.steps__section p {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.steps__section ol {
+  margin-left: 1rem;
+}
+
+.steps__section ol li {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  color: rgb(102, 102, 102);
+  list-style: decimal;
+}
