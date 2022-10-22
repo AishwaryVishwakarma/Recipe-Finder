@@ -36,7 +36,7 @@ function App() {
     setQuery(trimmedQuery);
   };
 
-  /*Fetch Intital data from API*/
+  /*Fetch data from API*/
   React.useEffect(() => {
     setLoading(true);
     setError("");

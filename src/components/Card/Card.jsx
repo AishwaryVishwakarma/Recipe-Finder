@@ -15,7 +15,7 @@ const Card = (props) => {
     setModal(bool);
   };
 
-  /*Reducing the summary to 100 characters and removing the string type*/
+  /*Truncating the summary to 100 words*/
   const summary =
     props.summary.slice(0, 100).replace(/(<([^>]+)>)/gi, "") + "...";
 
