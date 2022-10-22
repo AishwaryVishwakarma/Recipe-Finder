@@ -19,7 +19,9 @@ const Navbar = (props) => {
           <input type="text" placeholder="eg. pasta, chicken" ref={inputRef} />
           <AiOutlineSearch
             className={classes.search__icon}
-            onClick={props.handleSubmit}
+            onClick={(event) => {
+              props.handleSubmit(event, inputRef.current.value);
+            }}
           />
         </form>
         <li className={classes.subTitle}>Find your perfect recipe</li>

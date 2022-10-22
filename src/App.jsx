@@ -10,8 +10,6 @@ const API_KEY = "b03fe2b93446436db8121a8a39287a30";
 
 const maxResults = 50;
 
-const baseURL = `https://api.spoonacular.com/recipes/complexSearch?query=chicken&addRecipeInformation=true&number=${maxResults}&apiKey=${API_KEY}`;
-
 function App() {
   /*State for recipes data*/
   const [data, setData] = React.useState(null);
@@ -30,7 +28,12 @@ function App() {
   /*Handle on submit search*/
   const handleSubmit = (event, query) => {
     event.preventDefault();
-    setQuery(query);
+    const trimmedQuery = query.trim();
+    if (trimmedQuery === "") {
+      setError("Please enter a valid search query");
+      return;
+    }
+    setQuery(trimmedQuery);
   };
 
   /*Fetch Intital data from API*/
@@ -43,8 +46,16 @@ function App() {
       )
       .then((res) => {
         setData(res.data.results);
-        setShownData(res.data.results.slice(0, 10));
-        setTotalResults(res.data.totalResults);
+        if (res.data.results.length === 0) {
+          setError("No results found");
+        } else {
+          setShownData(res.data.results.slice(0, 10));
+          setTotalResults(
+            res.data.totalResults > maxResults
+              ? maxResults
+              : res.data.totalResults
+          );
+        }
         setLoading(false);
       })
       .catch((err) => {
@@ -95,7 +106,9 @@ function App() {
             <InfiniteScroll
               dataLength={shownData.length}
               next={fetchMoreData}
-              hasMore={shownData.length < totalResults}
+              hasMore={
+                shownData.length < totalResults && shownData.length !== 0
+              }
               loader={
                 <div className="later__loading">
                   <Loading type="bars" color="#1CAC78" height={50} width={50} />
