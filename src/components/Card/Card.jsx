@@ -7,6 +7,8 @@ import classes from "./Card.module.css";
 import Modal from "../Modal/Modal";
 
 const Card = (props) => {
+  // console.log("Card.jsx");
+
   /*State for modal*/
   const [modal, setModal] = React.useState(false);
 

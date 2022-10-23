@@ -11,6 +11,9 @@ import { GiBowlOfRice, GiHealthNormal } from "react-icons/gi";
 import classes from "./Modal.module.css";
 
 const Modal = (props) => {
+
+  // console.log("Modal.jsx");
+
   /*Handle modal on Escape Key*/
   React.useEffect(() => {
     function handleEscapeKey(e) {

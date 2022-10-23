@@ -11,6 +11,9 @@ const API_KEY = "886f90516ab4499d90de942cb36f99fd";
 const maxResults = 50;
 
 function App() {
+
+  // console.log("App.jsx");
+
   /*State for recipes data*/
   const [data, setData] = React.useState(null);
   const [shownData, setShownData] = React.useState(null);
@@ -26,14 +29,14 @@ function App() {
   const [query, setQuery] = React.useState("rice");
 
   /*Handle on submit search*/
-  const handleSubmit = (query) => {
+  const handleSubmit = React.useCallback((query) => {
     const trimmedQuery = query.trim();
     if (trimmedQuery === "") {
       setError("Please enter a valid search query");
       return;
     }
     setQuery(trimmedQuery);
-  };
+  }, []);
 
   /*Fetch data from API*/
   React.useEffect(() => {

@@ -3,7 +3,9 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { MdFastfood } from "react-icons/md";
 import classes from "./Navbar.module.css";
 
-const Navbar = (props) => {
+const Navbar = React.memo((props) => {
+  // console.log("Navbar.jsx");
+
   /*Inpur Ref*/
   const inputRef = React.useRef("");
 
@@ -33,6 +35,6 @@ const Navbar = (props) => {
       </ul>
     </nav>
   );
-};
+});
 
 export default Navbar;
