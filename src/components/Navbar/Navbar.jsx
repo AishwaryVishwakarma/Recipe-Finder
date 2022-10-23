@@ -7,21 +7,22 @@ const Navbar = (props) => {
   /*Inpur Ref*/
   const inputRef = React.useRef("");
 
+  function onSubmitHandler(e) {
+    e.preventDefault();
+    props.handleSubmit(inputRef.current.value);
+  }
+
   return (
     <nav className={classes.nav}>
       <ul className={classes.nav__items}>
         <form
-          onSubmit={(event) => {
-            props.handleSubmit(event, inputRef.current.value);
-          }}
+          onSubmit={onSubmitHandler}
           className={classes.input__field}
         >
           <input type="text" placeholder="eg. pasta, chicken" ref={inputRef} />
           <AiOutlineSearch
             className={classes.search__icon}
-            onClick={(event) => {
-              props.handleSubmit(event, inputRef.current.value);
-            }}
+            onClick={onSubmitHandler}
           />
         </form>
         <li className={classes.subTitle}>Find your perfect recipe</li>

@@ -31,7 +31,7 @@ const Modal = (props) => {
   });
 
   return ReactDOM.createPortal(
-    <div className={classes.modal}>
+    <div className={classes.modal} onClick={() => props.handleModal(false)}>
       <div className={classes.modal__container}>
         <div className={classes.modal__header}>
           {props.popular && (

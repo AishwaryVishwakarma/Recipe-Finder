@@ -19,14 +19,13 @@ const Card = (props) => {
   const summary =
     props.summary.slice(0, 100).replace(/(<([^>]+)>)/gi, "") + "...";
 
-  /*Upper case the first letter of the every word of title and limit the title name to 20 letters*/
-  const title =
-    props.title
-      .split(" ")
-      .map((word) => word[0].toUpperCase() + word.slice(1))
-      .join(" ")
-      
-     const cardTitle = title.length > 15 ? title.slice(0, 15) + "..." : title; 
+  /*Upper case the first letter of the every word of title and limit the title name to 15 letters*/
+  const title = props.title
+    .split(" ")
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+
+  const cardTitle = title.length > 15 ? title.slice(0, 15) + "..." : title;
   return (
     <>
       {modal && (

@@ -6,7 +6,7 @@ import Card from "./components/Card/Card";
 import Loading from "react-loading";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const API_KEY = "b03fe2b93446436db8121a8a39287a30";
+const API_KEY = "886f90516ab4499d90de942cb36f99fd";
 
 const maxResults = 50;
 
@@ -18,16 +18,15 @@ function App() {
   const [totalResults, setTotalResults] = React.useState(0);
   const [error, setError] = React.useState("");
   const [splice, setSplice] = React.useState({
-    start: 10,
-    end: 20,
+    start: 0,
+    end: 10,
   });
 
   /*State for search*/
   const [query, setQuery] = React.useState("rice");
 
   /*Handle on submit search*/
-  const handleSubmit = (event, query) => {
-    event.preventDefault();
+  const handleSubmit = (query) => {
     const trimmedQuery = query.trim();
     if (trimmedQuery === "") {
       setError("Please enter a valid search query");
@@ -40,6 +39,10 @@ function App() {
   React.useEffect(() => {
     setLoading(true);
     setError("");
+    setSplice({
+      start: 0,
+      end: 10,
+    });
     axios
       .get(
         `https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeInformation=true&number=${maxResults}&apiKey=${API_KEY}`
@@ -49,11 +52,11 @@ function App() {
         if (res.data.results.length === 0) {
           setError("No results found");
         } else {
-          setShownData(res.data.results.slice(0, 10));
+          setShownData(res.data.results.slice(splice.start, splice.end));
           setTotalResults(
-            res.data.totalResults > maxResults
+            res.data.results.length > maxResults
               ? maxResults
-              : res.data.totalResults
+              : res.data.results.length
           );
         }
         setLoading(false);
@@ -74,26 +77,19 @@ function App() {
     const random = Math.floor(Math.random() * 500) + 500;
     setTimeout(() => {
       setShownData((prev) => {
-        return [...prev, ...data.slice(splice.start, splice.end)];
+        return [...prev, ...data.slice(splice.start + 10, splice.end + 10)];
       });
       setSplice((prev) => {
-        if (prev.end + 10 > totalResults) {
-          return {
-            start: prev.start + 10,
-            end: totalResults,
-          };
-        } else {
-          return {
-            start: prev.start + 10,
-            end: prev.end + 10,
-          };
-        }
+        return {
+          start: prev.start + 10,
+          end: prev.end + 10,
+        };
       });
     }, random);
   };
 
   return (
-    <div>
+    <>
       <Navbar handleSubmit={handleSubmit} />
       {loading ? (
         <div className="initial__loading">
@@ -139,7 +135,7 @@ function App() {
           )}
         </>
       )}
-    </div>
+    </>
   );
 }
 
